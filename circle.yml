@@ -8,5 +8,5 @@ dependencies:
 test:
   post:
     - docker build --rm=true -t registry.uw.systems/telecom/telecom-kibana:latest .
-    - docker tag registry.uw.systems/telecom/telecom-kibana:latest registry.uw.systems:utilitywarehouse/telecom-kibana:$CIRCLE_SHA1
+    - docker tag registry.uw.systems/telecom/telecom-kibana:latest registry.uw.systems/telecom/telecom-kibana:$CIRCLE_SHA1
     - docker push registry.uw.systems/telecom/telecom-kibana
