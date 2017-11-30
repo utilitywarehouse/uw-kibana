@@ -3,9 +3,9 @@ RUN mkdir -p /opt/kibana
 WORKDIR /opt/kibana
 
 RUN apk --update add --no-cache wget ca-certificates bash
-RUN wget https://artifacts.elastic.co/downloads/kibana/kibana-5.3.0-linux-x86_64.tar.gz
-RUN tar -zxvf kibana-5.3.0-linux-x86_64.tar.gz --strip 1
-RUN rm kibana-5.3.0-linux-x86_64.tar.gz
+RUN wget https://artifacts.elastic.co/downloads/kibana/kibana-6.0.0-linux-x86_64.tar.gz
+RUN tar -zxvf kibana-6.0.0-linux-x86_64.tar.gz --strip 1
+RUN rm kibana-6.0.0-linux-x86_64.tar.gz
 run rm -rf /opt/kibana/node
 
 WORKDIR /opt/kibana/bin
