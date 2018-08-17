@@ -1,11 +1,14 @@
-FROM node
-RUN mkdir -p /opt/kibana
-WORKDIR /opt/kibana
+FROM node:10
 
-RUN apt-get update
-RUN wget https://artifacts.elastic.co/downloads/kibana/kibana-6.3.0-linux-x86_64.tar.gz
-RUN tar -zxvf kibana-6.3.0-linux-x86_64.tar.gz --strip 1
-RUN rm kibana-6.3.0-linux-x86_64.tar.gz
+ENV KIBANA_VERSION="6.3.2"
+
+RUN \
+ apt-get update && \
+ mkdir -p /opt/kibana && \
+ cd /opt/kibana && \
+ wget https://artifacts.elastic.co/downloads/kibana/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz && \
+ tar -zxvf kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz --strip 1 && \
+ rm kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz
 
 WORKDIR /opt/kibana/bin
 
