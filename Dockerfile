@@ -1,6 +1,6 @@
 FROM node:10
 
-ENV KIBANA_VERSION="6.3.2"
+ENV KIBANA_VERSION="6.4.0"
 
 RUN \
  apt-get update && \
