@@ -1,0 +1,27 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 17.11.0-ce
+      - run: docker login -u ${DOCKER_USER} -p ${DOCKER_PASS} registry.uw.systems
+      - run: docker build -t registry.uw.systems/telecom/telecom-kibana:$CIRCLE_SHA1 .
+      - run:
+          command: >
+            if [ $CIRCLE_BRANCH = 'master' ]; then
+              docker tag registry.uw.systems/telecom/telecom-kibana:$CIRCLE_SHA1 registry.uw.systems/telecom/telecom-kibana:latest;
+            else
+              docker tag registry.uw.systems/telecom/telecom-kibana:$CIRCLE_SHA1 registry.uw.systems/telecom/telecom-kibana:$CIRCLE_BRANCH;
+            fi
+      - run: docker push registry.uw.systems/telecom/telecom-kibana
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build:
+          context: org-global
