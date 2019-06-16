@@ -1,6 +1,6 @@
-FROM node:8.14.0-alpine
+FROM node:10.15.2-alpine
 
-ENV KIBANA_VERSION="6.6.1"
+ENV KIBANA_VERSION="7.1.1"
 
 RUN \
  mkdir -p /opt/kibana && \
