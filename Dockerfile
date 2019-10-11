@@ -1,6 +1,6 @@
-FROM node:8.14.0-alpine
+FROM node:10.15.2-alpine
 
-ENV KIBANA_VERSION="6.6.1"
+ENV KIBANA_VERSION="7.3.2"
 
 RUN \
  mkdir -p /opt/kibana && \
@@ -10,9 +10,11 @@ RUN \
  rm kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz
 
 RUN \
+  apk update && apk add libc6-compat nss
+RUN \
  rm /opt/kibana/node/bin/node && \
  ln -s /usr/local/bin/node /opt/kibana/node/bin/node
 
 WORKDIR /opt/kibana/bin
 
-CMD ["./kibana"]
+CMD ["./kibana", "--allow-root"]
