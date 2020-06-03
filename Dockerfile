@@ -1,4 +1,4 @@
-FROM node:10.15.2-alpine
+FROM node:10.19.0-alpine
 
 ENV KIBANA_VERSION="7.7.0"
 
