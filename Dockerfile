@@ -1,6 +1,6 @@
-FROM node:10.19.0-alpine
+FROM node:16.13.0
 
-ENV KIBANA_VERSION="7.7.0"
+ENV KIBANA_VERSION="7.16.2"
 
 RUN \
  mkdir -p /opt/kibana && \
@@ -9,8 +9,6 @@ RUN \
  tar -zxvf kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz --strip 1 && \
  rm kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz
 
-RUN \
-  apk update && apk add libc6-compat nss
 RUN \
  rm /opt/kibana/node/bin/node && \
  ln -s /usr/local/bin/node /opt/kibana/node/bin/node
